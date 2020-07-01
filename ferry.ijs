@@ -15,7 +15,7 @@ NB. SUR EH TD DR is scale up right, unit up unit straight and unit right
 setup_camera =: 3 : 0
 WH=: _2{.y [ ANG=: 1r180p1 * 9{y [ 'E C U'=: _3]\9{.y
 SUR=: ASP,1 [ ASP=: %/WH [ EC=: l2 E-C
-DR=: unit TD cross EH [ TD=: unit C-E [ EH=: unit U
+EH=: unit TD cross~ [ DR=: unit U cross~ [ TD=: unit C-E
 'ok'
 )
 
@@ -47,7 +47,7 @@ init''
 
 simplest=: 3 : 0
 sph=. 0 0.1 0.5 0.3
-tri=. _3 ]\ _1 _1 0 1 _1 0 1 1 0
+tri=. 0 { TRIANGLES
 NB. ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
 ((unit@pixelRay)"1 pixels WH) ray_triangle"1 _ tri
 )
