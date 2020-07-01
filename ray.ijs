@@ -23,5 +23,5 @@ NB. y is triangle
 ray_triangle=: 4 : 0
 'v0 v1 v2'=. y
 't u v'=. (E-v0) %. (-x) ,. (v1-v0) ,. (v2-v0)
-(1+(* d)) { _ _ , d=. t * (0<u) * (0<v) * (1>u+v)
+(+ _*0&=) t * (0<u) * (0<v) * (1>u+v)
 )
