@@ -18,7 +18,7 @@ DR=: unit TD cross EH [ TD=: unit C-E [ EH=: unit U
 
 init=: 3 : 0
 load'test.ijs'
-SCENE=: test_tok 1
+SCENE=: test_tok SCENEID
 setup_camera scene_cam SCENE
 load'ray.ijs'
 )
@@ -26,7 +26,7 @@ load'ray.ijs'
 init''
 
 simplest=: 3 : 0
-obj=. 0 0 0 0.3
+obj=. 0 0.1 0.5 0.3
 ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ obj
 )
 
