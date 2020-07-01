@@ -20,4 +20,13 @@ init=: 3 : 0
 load'test.ijs'
 SCENE=: test_tok 1
 setup_camera scene_cam SCENE
+load'ray.ijs'
 )
+
+init''
+
+simplest=: 3 : 0
+obj=. 0 0 0 0.3
+((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ obj
+)
+
