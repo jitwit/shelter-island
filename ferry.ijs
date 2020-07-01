@@ -46,9 +46,9 @@ end.
 init''
 
 simplest=: 3 : 0
-sph=. 0 0.1 0.5 0.3
-tri=. 1 { TRIANGLES
-((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
-NB. ((unit@pixelRay)"1 pixels WH) ray_triangle"1 _ tri
+NB. sph=. 0 0 0 0.3
+tri=. 0 { TRIANGLES
+NB. ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
+((unit@pixelRay)"1 pixels WH) ray_triangle"1 _ tri
 )
 

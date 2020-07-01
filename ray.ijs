@@ -1,5 +1,5 @@
 NB. flip a sign to have y decrease with pixel value?
-pixelR3 =: C + (DR,:EH) +/ . *~ SUR*(EC*3 o.-:ANG) * WH%~-&(-:WH)
+pixelR3 =: C + (DR,:-EH) +/ . *~ SUR*(EC*3 o.-:ANG) * WH%~-&(-:WH)
 pixelRay=: unit @ E -~ pixelR3
 
 NB. x corresponds to ray
