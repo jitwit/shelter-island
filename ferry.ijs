@@ -25,6 +25,7 @@ SCENE=: test_tok SCENEID
 setup_camera scene_cam SCENE
 VERTICES=: > {:"1 SCENE {~ I. (<'vertex') = ({. |: SCENE)
 TRIANGLES=: VERTICES {~ > {:"1 SCENE {~ I. (<'tri') = ({. |: SCENE)
+SPHERES=: > {:"1 SCENE {~ I. (<'sphere') = ({. |: SCENE)
 load'ray.ijs'
 )
 
@@ -40,15 +41,13 @@ TRIANGLES=: VERTICES {~ > {:"1 SCENE {~ I. (<'tri') = ({. |: SCENE)
 for_c. 2 }. SCENE do.
   echo c
 end.
-
 )
 
 init''
 
 simplest=: 3 : 0
 NB. sph=. 0 0 0 0.3
-tri=. 0 { TRIANGLES
+NB. tri=. 0 { TRIANGLES
 NB. ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
-((unit@pixelRay)"1 pixels WH) ray_triangle"1 _ tri
+(pixelRay"1 pixels WH) ray_objs"1 _ TRIANGLES;SPHERES
 )
-
