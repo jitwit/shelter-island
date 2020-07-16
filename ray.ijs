@@ -1,6 +1,7 @@
 NB. flip a sign to have y decrease with pixel value?
-pixelR3 =: C + (DR,:-EH) +/ . *~ SUR*(EC*3 o.-:ANG) * WH%~-&(-:WH)
-pixelRay=: unit @ E -~ pixelR3
+pixelR2 =: SUR * (3 o. -: ANG) * 2 * _1r2 + (%&WH)
+pixelR3 =: TD + (DR,:-EH) +/ . *~ pixelR2
+pixelRay=: unit @ pixelR3
 
 NB. x corresponds to ray
 NB. y to sphere (x y z r)
@@ -32,3 +33,5 @@ dbs=. x ray_sphere"_ _1 bs
 dts=. x ray_triangle"_ _1 ts
 <./ dbs , dts
 )
+
+NB. simplest''

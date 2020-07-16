@@ -43,11 +43,11 @@ for_c. 2 }. SCENE do.
 end.
 )
 
-init''
-
 simplest=: 3 : 0
 NB. sph=. 0 0 0 0.3
 NB. tri=. 0 { TRIANGLES
 NB. ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
-(pixelRay"1 pixels WH) ray_objs"1 _ TRIANGLES;SPHERES
+viewmat (* (1 - _&=)) (pixelRay"1 pixels WH) ray_objs"1 _ TRIANGLES;SPHERES
 )
+
+init''
