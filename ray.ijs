@@ -40,17 +40,17 @@ am
 )
 
 cast_ray =: 4 : 0
-dist=. _
-obj =. _1
-clr=. 0 0 0
-for_s. y do.
-  'tag dat' =. 2 {. s
+clr=. 0 0 0 [ obj =. _1 [ dist=. _
+for_s. y do. 'tag dat' =. 2 {. s
   select. tag
   case. 'tri'    do. if. dist > dtri =. x ray_triangle dat
 		     do. obj =. s_index [ dist =. dtri end.
   case. 'sphere' do. if. dist > dtri =. x ray_sphere   dat
-		     do. obj =. s_index [ dist =. dtri end. end. end.
-if. 0 <: obj do. clr =. x color_ray obj { y end.
-echo N % */WH
+		     do. obj =. s_index [ dist =. dtri
+		     end.
+  end.
+end.
+if. 0 <: obj do. clr =. x color_ray obj { y end. N =: >: N
+if. -. 100 | N do. echo N % */WH end.
 clr
 )
