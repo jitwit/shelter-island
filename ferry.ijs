@@ -1,7 +1,7 @@
 require 'viewmat stats/bonsai'
-load 'kernel.ijs read.ijs'
+load 'read.ijs kernel.ijs read.ijs'
 
-SCENEID=: 1
+SCENEID=: 2
 VERTICES=: ''
 TRIANGLES=: ''
 SPHERES=: ''
@@ -19,35 +19,35 @@ EH=: unit TD cross~ [ DR=: unit U cross~ [ TD=: unit C-E
 'ok'
 )
 
-init=: 3 : 0
-load'test.ijs'
-SCENE=: test_tok SCENEID
-setup_camera scene_cam SCENE
-VERTICES=: > {:"1 SCENE {~ I. (<'vertex') = ({. |: SCENE)
-TRIANGLES=: VERTICES {~ > {:"1 SCENE {~ I. (<'tri') = ({. |: SCENE)
-SPHERES=: > {:"1 SCENE {~ I. (<'sphere') = ({. |: SCENE)
-load'ray.ijs'
-)
-
 read_scene=: 3 : 0
-SCENE=: test_tok SCENEID
+SCENE=: tok 1!:1 < 'testscenes/scene',(":y),'.test'
 setup_camera scene_cam SCENE
-ambient=. 3 # 0.2
-directional=. ''
-diffuse=. ''
-specular=. ''
+ambient=. 0 0 0
+directional=. 0 0 0
+diffuse=. 0 0 0
+specular=. 0 0 0
 VERTICES=: > {:"1 SCENE {~ I. (<'vertex') = ({. |: SCENE)
-TRIANGLES=: VERTICES {~ > {:"1 SCENE {~ I. (<'tri') = ({. |: SCENE)
+OBJS=: 0 5 $ 0
+AMBS=: ''
+NB. TRIANGLES=: VERTICES {~ > {:"1 SCENE {~ I. (<'tri') = ({. |: SCENE)
 for_c. 2 }. SCENE do.
-  echo c
+  select. > {. c
+  case. 'ambient' do. ambient=. > {: c
+  case. 'diffuse' do. diffuse=. > {: c
+  case. 'directional' do. directional=. > {: c
+  case. 'specular' do. specular=. > {: c
+  case. 'tri'    do. OBJS=: OBJS , ('tri';(VERTICES{~>{:c);ambient ; diffuse ; specular)
+  case. 'sphere' do. OBJS=: OBJS , (c , ambient ; diffuse ; specular)
+  fcase. do. echo c
+  end.
 end.
+load 'ray.ijs'
 )
 
-simplest=: 3 : 0
-NB. sph=. 0 0 0 0.3
-NB. tri=. 0 { TRIANGLES
-NB. ((unit@pixelRay)"1 pixels WH) ray_sphere"1 _ sph
-viewmat (* (1 - _&=)) (pixelRay"1 pixels WH) ray_objs"1 _ TRIANGLES;SPHERES
+coloring=: 3 : 0
+read_scene y
+N =: 0
+IMAGE=: <. 255 * (pixelRay"1 pixels WH) cast_ray"1 _ OBJS
+IMAGE writepng 'out.png'
+viewpng 'out.png'
 )
-
-init''

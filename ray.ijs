@@ -34,4 +34,23 @@ dts=. x ray_triangle"_ _1 ts
 <./ dbs , dts
 )
 
-NB. simplest''
+color_ray =: 4 : 0
+'tag dat am di sp'=. y
+am
+)
+
+cast_ray =: 4 : 0
+dist=. _
+obj =. _1
+clr=. 0 0 0
+for_s. y do.
+  'tag dat' =. 2 {. s
+  select. tag
+  case. 'tri'    do. if. dist > dtri =. x ray_triangle dat
+		     do. obj =. s_index [ dist =. dtri end.
+  case. 'sphere' do. if. dist > dtri =. x ray_sphere   dat
+		     do. obj =. s_index [ dist =. dtri end. end. end.
+if. 0 <: obj do. clr =. x color_ray obj { y end.
+echo N % */WH
+clr
+)
