@@ -1,7 +1,7 @@
 require 'viewmat stats/bonsai'
 load 'read.ijs kernel.ijs read.ijs'
 
-SCENEID=: 2
+SCENEID=: 0
 VERTICES=: ''
 TRIANGLES=: ''
 SPHERES=: ''
@@ -23,7 +23,7 @@ read_scene=: 3 : 0
 SCENE=: tok 1!:1 < 'testscenes/scene',(":y),'.test'
 setup_camera scene_cam SCENE
 ambient=. 0 0 0
-directional=. 0 0 0
+directional=. 0 0 0 0 0 0
 diffuse=. 0 0 0
 specular=. 0 0 0
 VERTICES=: > {:"1 SCENE {~ I. (<'vertex') = ({. |: SCENE)
@@ -47,7 +47,7 @@ load 'ray.ijs'
 coloring=: 3 : 0
 read_scene y
 N =: 0
-IMAGE=: <. 255 * (pixelRay"1 pixels WH) cast_ray"1 _ OBJS
+IMAGE=: <. 255 * (pixelRay"1 pixels WH) cast_ray"2 _ OBJS
 IMAGE writepng 'out.png'
 viewpng 'out.png'
 )
